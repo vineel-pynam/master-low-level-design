@@ -18,7 +18,7 @@ class IdleState implements CoffeeMachineState{
     public void selectCoffee(String name) {
         Coffee coffee = this.cms.getCoffee(name);
         Inventory inventory = this.cms.getInventory();
-        Boolean isSufficient = inventory.hashEnoughIngredients(coffee.getMeasuredIngredients());
+        Boolean isSufficient = inventory.hasEnoughIngredients(coffee.getMeasuredIngredients());
 
         if( !isSufficient ){
             throw new RuntimeException("Not Enough Ingredients, Please select another type of coffee");

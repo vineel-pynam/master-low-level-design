@@ -5,9 +5,17 @@ import java.util.*;
 class Inventory {
     Map<Ingredient, Integer> stock;
 
-    Inventory(){
+    public static class SingletonHelper{
+        public static final Inventory INSTANCE = new Inventory();
+    }
+
+    private Inventory(){
         this.stock = new HashMap<>();
         initialize();
+    }
+
+    public static Inventory getInventory(){
+        return SingletonHelper.INSTANCE;
     }
 
     public void registerIngredient(String name, Integer quantity){
@@ -23,9 +31,11 @@ class Inventory {
         return this.stock.get(ingredient);
     }
 
-    public Boolean hashEnoughIngredients(List<MeasuredIngredient> measuredIngredients){
+    public Boolean hasEnoughIngredients(List<MeasuredIngredient> measuredIngredients){
+        // check low stock, use observer pattern and design notification service.
+        
         for( MeasuredIngredient measuredIngredient : measuredIngredients ){
-            if( this.stock.get(measuredIngredient.getIngredient()) < measuredIngredient.getQuantity() ){
+            if( this.stock.getOrDefault(measuredIngredient.getIngredient(), 0) < measuredIngredient.getQuantity() ){
                 return false;
             }
         }

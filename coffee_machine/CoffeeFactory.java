@@ -4,10 +4,20 @@ import java.util.*;
 
 class CoffeeFactory {
     private final Map<String, Coffee> coffeeRegistry = new HashMap<>();
+
+    public static class SingletonHelper{
+        public static final CoffeeFactory INSTANCE = new CoffeeFactory();
+    }
+
     
-    CoffeeFactory(){
+    private CoffeeFactory(){
         initialize();
     }
+
+    public static CoffeeFactory getInstance(){
+        return SingletonHelper.INSTANCE;
+    }
+
 
     public void registerCoffee(String name, Coffee coffee){
         coffeeRegistry.put(name, coffee);

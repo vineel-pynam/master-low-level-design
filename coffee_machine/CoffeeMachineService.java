@@ -14,8 +14,8 @@ class CoffeeMachineService {
     private FinalState finalState;
 
     CoffeeMachineService(){
-        this.inventory = new Inventory();
-        this.coffeeFactory = new CoffeeFactory();
+        this.inventory = Inventory.getInventory();
+        this.coffeeFactory = CoffeeFactory.getInstance();
         this.idleState = new IdleState(this);
         this.moneyInsertState = new MoneyInsertState(this);
         this.dispenseState = new DispenseState(this);

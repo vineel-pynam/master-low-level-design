@@ -11,7 +11,7 @@ abstract class Coffee {
     }
 
     public List<MeasuredIngredient> getMeasuredIngredients() {
-        return this.measuredIngredients;
+        return Collections.unmodifiableList(new ArrayList<>(this.measuredIngredients));
     }
 
 
@@ -21,7 +21,7 @@ abstract class Coffee {
 
     Coffee( String name, Double price, List<MeasuredIngredient> measuredIngredients){
         this.name = name;
-        this.measuredIngredients = Collections.unmodifiableList(measuredIngredients);
+        this.measuredIngredients = measuredIngredients;
         this.price = price;
     }
 

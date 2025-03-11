@@ -22,7 +22,7 @@ class Ingredient {
         if( obj == this ) return true;
         if( obj == null || getClass() != obj.getClass() ) return false;
         Ingredient ing = (Ingredient) obj;
-        return Objects.equals(this.name.toLowerCase(), ing.name.toLowerCase());
+        return name != null && ing.name != null && name.equalsIgnoreCase(ing.name);
     }
 
     @Override
